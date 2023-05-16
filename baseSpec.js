@@ -79,28 +79,35 @@ describe(
                 }
             }
         );
-        fit(
+        it(
             "TC003 - Validate invoice details",
             async function () {
 
                 await checkTextAfterLogin('demouser', 'abc123', 'h2[class="mt-5"]', 'Invoice List');
                 browser.sleep(500);
 
-                // await element(by.cssContainingText('.row .col.border.p-2', 'Rendezvous Hotel')).element(by.xpath('..')).element(by.css('.col.border.p-2 a')).filter(function(elem, index) {
-                //     return elem.getText().then(function(text) {
-                //       return text === 'Rendezvous Hotel';
-                //     });
-                // }).first().click();
-
                 await element(by.cssContainingText('.row .col.border.p-2', 'Rendezvous Hotel')).element(by.xpath('..')).element(by.css('.col.border.p-2 a')).click();
-                
+
                 browser.getAllWindowHandles().then(async function (handles) {
                     var newWindow = handles[1];
                     browser.switchTo().window(newWindow);
 
-                    const nameTitle = await element(by.css('.container h4.mt-5'));
-                    expect(nameTitle.isPresent()).toBe(true);
-                    expect(nameTitle.getText()).toContain('Rendezvous Hotel');
+                    browser.sleep(1500);
+
+                    const hotelName = await element(by.css('.container h4.mt-5'));
+                    expect(hotelName.isPresent()).toBe(true);
+                    expect(hotelName.getText()).toContain('Rendezvous Hotel');
+
+                    // const invoiceDate = element.all(by.css('ul li .font-weight-bold')).filter(function(elem, index) {
+                    //     return elem.getText().then(function(text) {
+                    //       return text === 'Invoice Date:';
+                    //     });
+                    //   }).first().element(by.xpath('..'));
+                    // // const invoiceDate = await element(by.cssContainingText('ul li .font-weight-bold', 'Invoice Date')).element(by.xpath('..'));
+                    // // console.log(invoiceDate.getText());
+                    // // expect(invoiceDate.isPresent()).toBe(true);
+                    // expect(invoiceDate.getText()).toContain('14/01/2018');
+
                 });
             }
         );
