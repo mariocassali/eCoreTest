@@ -98,16 +98,58 @@ describe(
                     expect(hotelName.isPresent()).toBe(true);
                     expect(hotelName.getText()).toContain('Rendezvous Hotel');
 
-                    // const invoiceDate = element.all(by.css('ul li .font-weight-bold')).filter(function(elem, index) {
-                    //     return elem.getText().then(function(text) {
-                    //       return text === 'Invoice Date:';
-                    //     });
-                    //   }).first().element(by.xpath('..'));
-                    // // const invoiceDate = await element(by.cssContainingText('ul li .font-weight-bold', 'Invoice Date')).element(by.xpath('..'));
-                    // // console.log(invoiceDate.getText());
-                    // // expect(invoiceDate.isPresent()).toBe(true);
-                    // expect(invoiceDate.getText()).toContain('14/01/2018');
+                    const invoiceDate = await element(by.xpath('/html/body/section/div/ul/li[1]/text()'));
+                    expect(invoiceDate.isPresent()).toBe(true);
+                    expect(invoiceDate.getText()).toContain('14/01/2018');
 
+                    const dueDate = await element(by.xpath('/html/body/section/div/ul/li[2]/text()'));
+                    expect(dueDate.isPresent()).toBe(true);
+                    expect(dueDate.getText()).toContain('15/01/2018');
+
+                    const invoiceNumber = await element(by.xpath('/html/body/section/div/h6'));
+                    expect(invoiceNumber.isPresent()).toBe(true);
+                    expect(invoiceNumber.getText()).toContain('Invoice #110 details');
+                    
+                    const bookingCode = await element(by.xpath('/html/body/section/div/table[1]/tbody/tr[1]/td[2]'));
+                    expect(bookingCode.isPresent()).toBe(true);
+                    expect(bookingCode.getText()).toContain('0875');
+
+                    const customerDetails = await element(by.xpath('/html/body/section/div/div/text()[1]'));
+                    expect(customerDetails.isPresent()).toBe(true);
+                    expect(customerDetails.getText()).toContain('JOHNY SMITH');
+                    
+                    const room = await element(by.xpath('/html/body/section/div/table[1]/tbody/tr[2]/td[2]'));
+                    expect(room.isPresent()).toBe(true);
+                    expect(room.getText()).toContain('Superior Double');
+
+                    const checkIn = await element(by.xpath('/html/body/section/div/table[1]/tbody/tr[5]/td[2]'));
+                    expect(checkIn.isPresent()).toBe(true);
+                    expect(checkIn.getText()).toContain('14/01/2018');
+
+                    const checkOut = await element(by.xpath('/html/body/section/div/table[1]/tbody/tr[6]/td[2]'));
+                    expect(checkOut.isPresent()).toBe(true);
+                    expect(checkOut.getText()).toContain('15/01/2018');
+
+                    const totalStayCount = await element(by.xpath('/html/body/section/div/table[1]/tbody/tr[3]/td[2]'));
+                    expect(totalStayCount.isPresent()).toBe(true);
+                    expect(totalStayCount.getText()).toContain('1');
+
+                    const totalStayAmount = await element(by.xpath('/html/body/section/div/table[1]/tbody/tr[4]/td[2]'));
+                    expect(totalStayAmount.isPresent()).toBe(true);
+                    expect(totalStayAmount.getText()).toContain('$150');
+
+                    const depositNow = await element(by.xpath('/html/body/section/div/table[2]/tbody/tr/td[1]'));
+                    expect(depositNow.isPresent()).toBe(true);
+                    expect(depositNow.getText()).toContain('USD $20.90');
+
+                    const taxeVat = await element(by.xpath('/html/body/section/div/table[2]/tbody/tr/td[2]'));
+                    expect(taxeVat.isPresent()).toBe(true);
+                    expect(taxeVat.getText()).toContain('USD $19.00');
+
+                    const totalAmount = await element(by.xpath('/html/body/section/div/table[2]/tbody/tr/td[3]'));
+                    expect(totalAmount.isPresent()).toBe(true);
+                    expect(totalAmount.getText()).toContain('USD $209.00');
+                    
                 });
             }
         );
