@@ -1,0 +1,17 @@
+{
+  "name": "test-automation-assessment",
+  "version": "0.0.1",
+  "description": "Test Automation Assessment",
+  "main": "baseSpec.js",
+  "scripts": {
+    "test": "protractor baseConfig.js"
+  },
+  "keywords": [
+    "protractor"
+  ],
+  "author": "Mário Cassali",
+  "license": "MIT",
+  "dependencies": {
+    "protractor": "^7.0.0"
+  }
+}
